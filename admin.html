@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Online Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+  <script src="data.js"></script>
+  <script src="shared.js"></script>
+  <script src="admin.js" defer></script>
+</head>
+<body>
+  <nav class="nav">
+    <a class="logo" href="index.html">Blue<b>Store</b> <span class="meta">Admin</span></a>
+    <div class="links">
+      <a href="index.html">Back to store</a>
+      <a href="#charts">Charts</a>
+      <a href="#orders">Orders</a>
+      <a href="#products">Products</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <header class="hero" style="padding-bottom:10px">
+      <h1 style="max-width:none;font-size:clamp(1.8rem,4vw,2.6rem)">Sales overview</h1>
+      <p>Revenue, orders and product performance. Orders placed in the store appear here automatically.</p>
+    </header>
+
+    <div class="bar">
+      <select id="fc" aria-label="Filter by country"></select>
+      <span class="spacer"></span>
+      <button class="btn ghost sm" id="csv" type="button">Export orders (CSV)</button>
+      <button class="btn ghost sm" id="reset" type="button">Delete orders placed in store</button>
+    </div>
+
+    <div class="kpis" id="kpis"></div>
+
+    <section id="charts">
+      <h2>Sales charts</h2>
+      <div class="charts">
+        <div class="panel wide"><h3>Revenue by date</h3><div class="cbox"><canvas id="c1"></canvas></div></div>
+        <div class="panel"><h3>Top 10 products by units sold</h3><div class="cbox"><canvas id="c2"></canvas></div></div>
+        <div class="panel"><h3>Revenue by country</h3><div class="cbox"><canvas id="c3"></canvas></div></div>
+        <div class="panel wide"><h3>Orders by hour of day</h3><div class="cbox"><canvas id="c4"></canvas></div></div>
+      </div>
+    </section>
+
+    <section id="orders">
+      <h2>Orders</h2>
+      <div class="bar"><input id="oq" type="search" placeholder="Filter by order code, country or product..." style="width:100%;max-width:380px" aria-label="Filter orders"></div>
+      <div class="tw"><table>
+        <thead><tr><th>Order code</th><th>Date</th><th>Country</th><th>Customer</th><th class="n">Items</th><th class="n">Units</th><th class="n">Total</th></tr></thead>
+        <tbody id="otb"></tbody></table></div>
+    </section>
+
+    <section id="products">
+      <h2>Product performance</h2>
+      <div class="bar">
+        <input id="pq" type="search" placeholder="Filter products..." style="width:100%;max-width:380px" aria-label="Filter products">
+        <select id="ps" aria-label="Sort products"><option value="revenue">Highest revenue</option><option value="qty">Most units</option><option value="orderCount">Most orders</option><option value="price">Highest price</option></select>
+      </div>
+      <div class="tw"><table>
+        <thead><tr><th>Product</th><th class="n">Price</th><th class="n">Units sold</th><th class="n">In orders</th><th class="n">Revenue</th></tr></thead>
+        <tbody id="ptb"></tbody></table></div>
+    </section>
+
+    <section id="countries">
+      <h2>Countries</h2>
+      <div class="tw"><table>
+        <thead><tr><th>Country</th><th class="n">Orders</th><th class="n">Units</th><th class="n">Revenue</th><th class="n">Share</th></tr></thead>
+        <tbody id="ctb"></tbody></table></div>
+    </section>
+  </main>
+</body>
+</html>
